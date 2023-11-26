@@ -1,7 +1,22 @@
+/**
+ * Navbar Component
+ *
+ * A responsive navigation bar component for the website.
+ *
+ * @component
+ * @example
+ * // Example usage of the Navbar component
+ * <Navbar />
+ */
 "use client";
 import React from "react";
 import { useState } from "react";
-//add documents later
+
+/**
+ * Functional component representing the main navigation bar.
+ *
+ * @returns {JSX.Element} The JSX for the Navbar.
+ */
 function Navbar() {
   return (
     <div className="fixed text-white w-full top-0 left-0 ">
@@ -25,6 +40,16 @@ function Navbar() {
   );
 }
 
+/**
+ * MobileMenu Component
+ *
+ * A component representing the mobile menu of the website.
+ *
+ * @component
+ * @example
+ * // Example usage of the MobileMenu component
+ * <MobileMenu />
+ */
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
