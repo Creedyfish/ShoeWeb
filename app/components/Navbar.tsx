@@ -15,11 +15,11 @@ import { useState } from "react";
 /**
  * Functional component representing the main navigation bar.
  *
- * @returns {JSX.Element} The JSX for the Navbar.
+ * @returns {React.JSX.Element} The JSX for the Navbar.
  */
 function Navbar() {
   return (
-    <div className="fixed text-white w-full top-0 left-0 ">
+    <div className="fixed text-white w-full top-0 left-0 z-50 ">
       <nav className="bg-slate-800">
         <div className="container mx-auto hidden md:flex justify-evenly px-2 py-4 ">
           <div className="logo">logo</div>
