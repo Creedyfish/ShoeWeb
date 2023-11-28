@@ -1,0 +1,22 @@
+{
+    "featured_product": [
+        {
+            "product_id": 1,
+            "product_name": "SF REDZ",
+            "product_tagline": "Stride in Style, Run with Passion",
+            "product_image": "featProd1.svg"
+        },
+        {
+            "product_id": 2,
+            "product_name": "O-RANGE GX",
+            "product_tagline": "Step into Innovation, Unleash Your Journey.",
+            "product_image": "featProd2.svg"
+        },
+        {
+            "product_id": 3,
+            "product_name": "G-HUNTER",
+            "product_tagline": "Explore Beyond Limits, Hunt Your Path in Style.",
+            "product_image": "featProd3.svg"
+        }
+    ]
+}

@@ -4,9 +4,9 @@ function Footer() {
   return (
     <footer className="w-full top-0 left-0 bg-slate-800 text-slate-200">
       <div className="container flex flex-col mx-auto px-2 py-4">
-        <div className="top-layer flex p-4">
-          <div className="flex flex-1 w-full justify-around ">
-            <div className="">
+        <div className="top-layer flex">
+          <div className="flex flex-wrap gap-4 flex-1 w-full justify-center md:justify-around md:gap-0 ">
+            <div className="flex-1">
               <div>Products</div>
               <ul>
                 <li>Featured</li>
@@ -15,14 +15,14 @@ function Footer() {
                 <li>Kids</li>
               </ul>
             </div>
-            <div className="">
+            <div className="flex-1">
               <div>Account</div>
               <ul>
                 <li>Login</li>
                 <li>SignUp</li>
               </ul>
             </div>
-            <div className="">
+            <div className="flex-1">
               <div>Company</div>
               <ul>
                 <li>About Us</li>

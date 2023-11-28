@@ -7,6 +7,41 @@ html {
   
 }
 
+.product-title{
+  text-shadow: 7px 5px 4px rgba(0, 0, 0, 0.25);
+}
+
+.fade-left{
+  animation: fadeleft .3s ease-in-out;
+}
+
+.fade-right{
+  animation: faderight .3s ease-in-out;
+}
+
+
+@keyframes faderight {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeleft {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
