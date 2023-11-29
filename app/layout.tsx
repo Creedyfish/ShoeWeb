@@ -26,8 +26,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${raleway.variable} ${inter.variable}`}>
-      <body className={raleway.className}>
+    <html lang="en" className={`${raleway.variable} ${inter.variable} `}>
+      <body className={` bg-slate-800 ${raleway.className}`}>
         <Navbar />
         {children}
         <Footer />

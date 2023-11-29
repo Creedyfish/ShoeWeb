@@ -4,19 +4,56 @@
             "product_id": 1,
             "product_name": "SF REDZ",
             "product_tagline": "Stride in Style, Run with Passion",
-            "product_image": "featProd1.svg"
+            "product_image": "featProd1.svg",
+            "bgcolor": "#7E0B22"
         },
         {
             "product_id": 2,
             "product_name": "O-RANGE GX",
             "product_tagline": "Step into Innovation, Unleash Your Journey.",
-            "product_image": "featProd2.svg"
+            "product_image": "featProd2.svg",
+            "bgcolor": "#D5382C"
         },
         {
             "product_id": 3,
             "product_name": "G-HUNTER",
             "product_tagline": "Explore Beyond Limits, Hunt Your Path in Style.",
-            "product_image": "featProd3.svg"
+            "product_image": "featProd3.svg",
+            "bgcolor": "#7C9C46"
+        }
+    ],
+    "product": [
+        {
+            "product_id": 1,
+            "product_name": "SF REDZ",
+            "product_tagline": "Stride in Style, Run with Passion",
+            "product_image": "redz.svg",
+            "product_price": 299,
+            "bgcolor": "#7E0B22"
+        },
+        {
+            "product_id": 2,
+            "product_name": "O-RANGE GX",
+            "product_tagline": "Step into Innovation, Unleash Your Journey.",
+            "product_image": "orange.svg",
+            "product_price": 299,
+            "bgcolor": "#D5382C"
+        },
+        {
+            "product_id": 3,
+            "product_name": "G-HUNTER",
+            "product_tagline": "Explore Beyond Limits, Hunt Your Path in Style.",
+            "product_image": "hunter.svg",
+            "product_price": 299,
+            "bgcolor": "#7C9C46"
+        },
+        {
+            "product_id": 4,
+            "product_name": "BW STRIKER",
+            "product_tagline": "Stride in Style, Run with Passion",
+            "product_image": "striker.svg",
+            "product_price": 299,
+            "bgcolor": "#000000"
         }
     ]
 }

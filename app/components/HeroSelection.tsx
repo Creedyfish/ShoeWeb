@@ -8,6 +8,7 @@ interface Props {
     product_name: string;
     product_tagline: string;
     product_image: string;
+    bgcolor: string;
 
     // Add other properties as needed
 
@@ -49,9 +50,10 @@ function HeroSelection({ data }: Props) {
   }, [index]);
 
   console.log(index);
+  console.log(data[index].bgcolor);
   return (
     <div className="flex flex-col w-full">
-      <div className="relative flex-wrap md:flex bg-slate-500">
+      <div className="relative flex-wrap md:flex ">
         <button
           className="absolute z-50 top-1/2 -right-5 bg-red-700 hidden md:flex"
           onClick={handleNextClick}
@@ -61,9 +63,7 @@ function HeroSelection({ data }: Props) {
         <button
           className="absolute z-50 top-1/2 -left-5 bg-red-700 hidden md:flex"
           onClick={handlePrevClick}
-        >
-          <img src="/uiw_right.svg" alt="" />
-        </button>
+        ></button>
         <div
           className="featured-item flex flex-1 flex-col items-center justify-center fade-left"
           id="featured-item"
@@ -77,10 +77,15 @@ function HeroSelection({ data }: Props) {
             {data[index].product_tagline}
           </div>
         </div>
-        <div className="flex flex-1 justify-center">
-          <div className="featured-item h-[50vh] relative flex fade-left">
+        <div className="flex flex-1 justify-center relative">
+          <div className="featured-item h-[50vh] flex justify-center fade-left">
+            <div
+              className={`absolute rounded-full transition-all ease-out duration-300 z-0 w-52 h-52 md:w-[25vw] md:h-[25vw] translate-y-5`}
+              style={{ backgroundColor: data[index].bgcolor }}
+            ></div>
+
             <img
-              className="h-[50vh] transition-all ease-in-out duration-300 md:translate-y-16"
+              className="w-60 h-60 md:h-[50vh] md:w-[50vh] z-10 transition-all ease-in-out duration-300 md:translate-y-16"
               src={`/${data[index].product_image}`}
               alt="sdasd"
             />
