@@ -9,6 +9,7 @@
  * <Navbar />
  */
 "use client";
+import Image from "next/image";
 import React from "react";
 import { useState } from "react";
 
@@ -21,8 +22,17 @@ function Navbar() {
   return (
     <div className="fixed text-white w-full top-0 left-0 z-50 ">
       <nav className="bg-slate-800">
-        <div className="container mx-auto hidden md:flex justify-evenly px-2 py-4 ">
-          <div className="logo">logo</div>
+        <div className="container mx-auto hidden md:flex justify-evenly items-center px-2 py-4 ">
+          <div className="logo">
+            <Image
+              className="w-10 h-10"
+              src={"/logo.svg"}
+              alt=""
+              width={0}
+              height={0}
+              priority={true}
+            />
+          </div>
 
           <div className="navmenu">
             <ul className="flex gap-4">
@@ -32,7 +42,15 @@ function Navbar() {
               <li>Kids</li>
             </ul>
           </div>
-          <div className="search">asdads</div>
+          <div className="search">
+            <input
+              className="rounded-2xl outline-none text-slate-800 px-2 py-1"
+              type="search"
+              name=""
+              id=""
+              placeholder="Search for product"
+            />
+          </div>
         </div>
         <MobileMenu />
       </nav>

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { lazy } from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -103,6 +103,7 @@ function HeroSelection({ data }: Props) {
               width={0}
               height={0}
               alt="sdasd"
+              loading="lazy"
             />
           </div>
         </div>
@@ -114,8 +115,8 @@ function HeroSelection({ data }: Props) {
             className={`${
               product.product_id !== data[index].product_id
                 ? "bg-white"
-                : "bg-slate-600"
-            } rounded-full w-4 h-4 mx-1 transition-all ease-in-out duration-300 border-2 border-slate-600`}
+                : "bg-slate-800"
+            } rounded-full w-4 h-4 mx-1 transition-all ease-in-out duration-300 border-2 border-slate-800`}
           ></div>
         ))}
       </div>
