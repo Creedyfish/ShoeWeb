@@ -50,8 +50,6 @@ function HeroSelection({ data }: Props) {
     return () => clearTimeout(timeoutId);
   }, [index]);
 
-  console.log(index);
-  console.log(data[index].bgcolor);
   return (
     <div className="flex flex-col w-full">
       <div className="relative flex-wrap md:flex ">
