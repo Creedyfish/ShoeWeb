@@ -32,14 +32,14 @@ export default async function Home() {
         <section className="categories  p-10 text-slate-50 text-2xl font-medium">
           <div className="flex flex-wrap justify-center gap-4 md:justify-evenly md:flex-nowrap">
             <div className="relative flex rounded-xl overflow-hidden">
-              <img src="/men.svg" alt="" />
+              <Image src="/men.svg" width={373} height={464} alt="" />
               <div className="absolute bg-black opacity-50 flex w-full h-full"></div>
               <div className="absolute bottom-[10%] left-5 bg-rose-600">
                 <p className="translate-x-5">MEN'S</p>
               </div>
             </div>
             <div className="relative flex rounded-xl overflow-hidden">
-              <img src="/women.svg" alt="" />
+              <Image src="/women.svg" width={373} height={464} alt="" />
               <div className="absolute bg-black opacity-50 flex w-full h-full"></div>
 
               <div className="absolute bottom-[10%] left-5 bg-rose-600">
@@ -47,7 +47,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="relative flex rounded-xl overflow-hidden">
-              <img src="/kids.svg" alt="" />
+              <Image src="/kids.svg" width={373} height={464} alt="" />
               <div className="absolute bg-black opacity-50 flex w-full h-full"></div>
               <div className="absolute bottom-[10%] left-5 bg-rose-600">
                 <p className="translate-x-5">KID'S</p>

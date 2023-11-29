@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface Props {
   data: {
@@ -58,12 +59,26 @@ function HeroSelection({ data }: Props) {
           className="absolute z-50 top-1/2 -right-5 bg-red-700 hidden md:flex"
           onClick={handleNextClick}
         >
-          <img src="/uiw_left.svg" alt="" />
+          <Image
+            className="w-full h-full"
+            width={0}
+            height={0}
+            src="/uiw_left.svg"
+            alt=""
+          />
         </button>
         <button
           className="absolute z-50 top-1/2 -left-5 bg-red-700 hidden md:flex"
           onClick={handlePrevClick}
-        ></button>
+        >
+          <Image
+            className="w-full h-full"
+            width={0}
+            height={0}
+            src="/uiw_right.svg"
+            alt=""
+          />
+        </button>
         <div
           className="featured-item flex flex-1 flex-col items-center justify-center fade-left"
           id="featured-item"
@@ -84,9 +99,11 @@ function HeroSelection({ data }: Props) {
               style={{ backgroundColor: data[index].bgcolor }}
             ></div>
 
-            <img
+            <Image
               className="w-60 h-60 md:h-[50vh] md:w-[50vh] z-10 transition-all ease-in-out duration-300 md:translate-y-16"
               src={`/${data[index].product_image}`}
+              width={0}
+              height={0}
               alt="sdasd"
             />
           </div>
