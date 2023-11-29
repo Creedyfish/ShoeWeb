@@ -35,7 +35,7 @@ export default async function Home() {
               <Image src="/men.svg" width={373} height={464} alt="" />
               <div className="absolute bg-black opacity-50 flex w-full h-full"></div>
               <div className="absolute bottom-[10%] left-5 bg-rose-600">
-                <p className="translate-x-5">MEN'S</p>
+                <p className="translate-x-5">MEN&apos;S</p>
               </div>
             </div>
             <div className="relative flex rounded-xl overflow-hidden">
@@ -43,14 +43,14 @@ export default async function Home() {
               <div className="absolute bg-black opacity-50 flex w-full h-full"></div>
 
               <div className="absolute bottom-[10%] left-5 bg-rose-600">
-                <p className="translate-x-5">WOMEN'S</p>
+                <p className="translate-x-5">WOMEN&apos;S</p>
               </div>
             </div>
             <div className="relative flex rounded-xl overflow-hidden">
               <Image src="/kids.svg" width={373} height={464} alt="" />
               <div className="absolute bg-black opacity-50 flex w-full h-full"></div>
               <div className="absolute bottom-[10%] left-5 bg-rose-600">
-                <p className="translate-x-5">KID'S</p>
+                <p className="translate-x-5">KID&apos;S</p>
               </div>
             </div>
           </div>
