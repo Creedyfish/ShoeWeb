@@ -82,11 +82,14 @@ function HeroSelection({ data }: Props) {
           id="featured-item"
         >
           <div className={`product-title `}>
-            <h1 className="flex md:text-7xl font-bold bg-clip-text text-red-700">
+            <h1
+              className="flex md:text-7xl font-bold bg-clip-text text-red-700"
+              style={{ color: data[index].bgcolor }}
+            >
               {data[index].product_name}
             </h1>
           </div>
-          <div className="product-tagline text-lg">
+          <div className="product-tagline text-2xl text-slate-50">
             {data[index].product_tagline}
           </div>
         </div>
@@ -114,9 +117,9 @@ function HeroSelection({ data }: Props) {
             key={product.product_id}
             className={`${
               product.product_id !== data[index].product_id
-                ? "bg-white"
-                : "bg-slate-800"
-            } rounded-full w-4 h-4 mx-1 transition-all ease-in-out duration-300 border-2 border-slate-800`}
+                ? "bg-slate-800"
+                : "bg-slate-50"
+            } rounded-full w-4 h-4 mx-1 transition-all ease-in-out duration-300 border-[1px] border-slate-50`}
           ></div>
         ))}
       </div>
