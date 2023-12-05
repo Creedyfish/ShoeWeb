@@ -4,6 +4,9 @@ import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Inter, Raleway } from "next/font/google";
 
+import { getServerSession } from "next-auth";
+import { options } from "./api/auth/[...nextauth]/options";
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -26,6 +29,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(options);
   return (
     <html lang="en" className={`${raleway.variable} ${inter.variable} `}>
       <head>
@@ -48,8 +52,9 @@ export default async function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
+
       <body className={` bg-slate-800 ${raleway.className}`}>
-        <Navbar />
+        <Navbar session={session} />
         {children}
         <Footer />
       </body>

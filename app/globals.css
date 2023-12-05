@@ -2,9 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* .swiper {
+  width: 100%;
+  height: 500px;
+}
+*/
+/* .swiper-slide {
+  overflow: visible;
+} */
+
+/*
+ .swiper-slide img {
+  
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}  */
+
+.swiper-pagination-bullet {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 50px;
+  color: #000;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.swiper-pagination-bullet-active {
+  color: #fff;
+  background: red;
+}
+
+
+
+
 html {
   font-family: var(--font-raleway);
   
+  
+}
+
+.no-drag {
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .product-title{

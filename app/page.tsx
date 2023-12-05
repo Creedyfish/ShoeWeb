@@ -3,19 +3,20 @@ import ProductCard from "./components/ProductCard";
 import { promises as fs } from "fs";
 import { useState } from "react";
 import HeroSelection from "./components/HeroSelection";
+import Slider from "./components/Slider";
 
 export default async function Home() {
   const file = await fs.readFile(process.cwd() + "/data.json", "utf8");
   const data = JSON.parse(file);
 
   return (
-    <main className="pt-12  container top-0 left-0 w-full h-full mx-auto bg-slate-700">
+    <main className="pt-20  container top-0 left-0 w-full h-full mx-auto bg-slate-700">
       <div className="">
-        <section className="hero-section w-full py-6 ">
-          <HeroSelection data={data.featured_product} />
+        <section className="hero-section w-full py-6 overflow-visible">
+          <Slider data={data.featured_product} />
         </section>
         <section className="featured-prods ">
-          <div className="flex flex-wrap md:flex-nowrap p-10 gap-4 justify-center">
+          <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
             {data
               ? data.product.map(
                   (prod: {
@@ -27,11 +28,12 @@ export default async function Home() {
                     bgcolor: string;
                   }) => <ProductCard key={prod.product_id} data={prod} />
                 )
-              : "sd"}
+              : ""}
           </div>
         </section>
+
         <section className="categories  p-10 text-slate-50 text-2xl font-medium">
-          <div className="flex flex-wrap justify-center gap-4 md:justify-evenly md:gap-px md:flex-nowrap">
+          <div className="flex flex-wrap justify-center gap-4 md:justify-evenly lg::gap-px md:flex-nowrap no-drag">
             <button className="relative group flex rounded-xl justify-center overflow-hidden ">
               <Image
                 className="group-hover:scale-110 transition-all ease-in-out duration-300"

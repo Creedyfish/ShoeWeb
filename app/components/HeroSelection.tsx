@@ -10,10 +10,6 @@ interface Props {
     product_tagline: string;
     product_image: string;
     bgcolor: string;
-
-    // Add other properties as needed
-
-    // Add other properties as needed
   }[];
 }
 
@@ -70,7 +66,7 @@ function HeroSelection({ data }: Props) {
           onClick={handlePrevClick}
         >
           <Image
-            className="w-full h-full"
+            className="w-full h-full select-none"
             width={0}
             height={0}
             src="/uiw_right.svg"
@@ -78,7 +74,7 @@ function HeroSelection({ data }: Props) {
           />
         </button>
         <div
-          className="featured-item flex flex-1 flex-col items-center justify-center fade-left"
+          className="featured-item flex flex-1 flex-col items-center justify-center fade-left drag-none"
           id="featured-item"
         >
           <div className={`product-title `}>
@@ -94,14 +90,12 @@ function HeroSelection({ data }: Props) {
           </div>
         </div>
         <div className="flex flex-1 justify-center relative">
-          <div className="featured-item h-[50vh] flex justify-center fade-left">
-            <div
-              className={`absolute rounded-full transition-all ease-out duration-300 z-0 w-52 h-52 md:w-[25vw] md:h-[25vw] translate-y-5`}
-              style={{ backgroundColor: data[index].bgcolor }}
-            ></div>
-
+          <div
+            className="featured-item  flex justify-center fade-left rounded-full"
+            style={{ backgroundColor: data[index].bgcolor }}
+          >
             <Image
-              className="w-60 h-60 md:h-[50vh] md:w-[50vh] z-10 transition-all ease-in-out duration-300 md:translate-y-16"
+              className="w-72 h-72 lg:h-[50vw] lg:w-[50vw] z-10 transition-all ease-in-out duration-300 md:translate-y-16 max-w-md max-h-[448px]"
               src={`/${data[index].product_image}`}
               width={0}
               height={0}
@@ -113,14 +107,15 @@ function HeroSelection({ data }: Props) {
       </div>
       <div className="slider flex justify-center py-4">
         {data.map((product) => (
-          <div
+          <button
             key={product.product_id}
             className={`${
               product.product_id !== data[index].product_id
                 ? "bg-slate-800"
                 : "bg-slate-50"
             } rounded-full w-4 h-4 mx-1 transition-all ease-in-out duration-300 border-[1px] border-slate-50`}
-          ></div>
+            onClick={() => setIndex((prev) => product.product_id - 1)}
+          ></button>
         ))}
       </div>
     </div>
