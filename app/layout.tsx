@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Inter, Raleway } from "next/font/google";
-
+import Provider from "./components/Provider";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 
@@ -54,9 +54,10 @@ export default async function RootLayout({
       </head>
 
       <body className={` bg-slate-800 ${raleway.className}`}>
-        <Navbar session={session} />
-        {children}
-        <Footer />
+        <Provider session={session}>
+          {children}
+          <Footer />
+        </Provider>
       </body>
     </html>
   );

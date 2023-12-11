@@ -1,11 +1,37 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Post {
+  id    Int    @id @default(autoincrement())
+  title String
+}
+
+model User {
+  id    Int    @id @default(autoincrement())
+  email String @unique
+}
+
+model Product {
+  product_id        Int                @id(map: "products_pkey") @default(autoincrement())
+  name              String             @db.VarChar(255)
+  description       String?
+  price             Decimal            @db.Decimal(10, 2)
+  image             String             @db.VarChar(255)
+  bgcolor           String?            @db.VarChar
+  Featured_Products Featured_Products?
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Featured_Products {
+  id         Int     @id @default(autoincrement())
+  tagline    String  @db.VarChar
+  feat_image String? @db.VarChar
+  Product    Product @relation(fields: [id], references: [product_id], onDelete: Cascade)
 }

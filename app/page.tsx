@@ -4,19 +4,20 @@ import { promises as fs } from "fs";
 import { useState } from "react";
 import HeroSelection from "./components/HeroSelection";
 import Slider from "./components/Slider";
+import { cookies } from "next/headers";
+import { getfeatProds } from "./queries/apiQueries";
 
 export default async function Home() {
-  const file = await fs.readFile(process.cwd() + "/data.json", "utf8");
-  const data = JSON.parse(file);
+  // const data = await getfeatProds();
 
   return (
     <main className="pt-20  container top-0 left-0 w-full h-full mx-auto bg-slate-700">
       <div className="">
         <section className="hero-section w-full py-6 overflow-visible">
-          <Slider data={data.featured_product} />
+          {/* <Slider data={data} /> */}
         </section>
         <section className="featured-prods ">
-          <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
+          {/* <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
             {data
               ? data.product.map(
                   (prod: {
@@ -29,7 +30,7 @@ export default async function Home() {
                   }) => <ProductCard key={prod.product_id} data={prod} />
                 )
               : ""}
-          </div>
+          </div> */}
         </section>
 
         <section className="categories  p-10 text-slate-50 text-2xl font-medium">

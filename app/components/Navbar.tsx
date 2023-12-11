@@ -11,10 +11,9 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { Session } from "next-auth";
 import Link from "next/link";
 import { useState } from "react";
-import { getSession } from "next-auth/react";
+import { Session } from "next-auth";
 
 /**
  * Functional component representing the main navigation bar.
@@ -22,10 +21,10 @@ import { getSession } from "next-auth/react";
  * @returns {React.JSX.Element} The JSX for the Navbar.
  */
 
-async function Navbar({ session }: { session: Session | null }) {
+function Navbar({ session }: { session: Session | null }) {
   return (
-    <div className="fixed text-white w-full top-0 left-0 z-50 ">
-      <nav className="bg-slate-800 flex justify-center">
+    <nav className="fixed text-white w-full top-0 left-0 z-50 ">
+      <div className="bg-slate-800 flex justify-center">
         <div className="container m x-auto hidden md:flex items-center px-2 py-4 ">
           <div className="logo flex-1">
             <Image
@@ -65,23 +64,27 @@ async function Navbar({ session }: { session: Session | null }) {
               />
             </div>
             <div>
-              {!session ? (
+              {session ? (
+                (console.log(session),
+                (
+                  <div>
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="fill-slate-50 h-8 w-8"
+                    >
+                      <title />
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M20,19v1a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V19a6,6,0,0,1,6-6h4A6,6,0,0,1,20,19Z" />
+                    </svg>
+                    <span>{session.user?.name}</span>
+                    <Link href="/api/auth/signout?callbackUrl=/">Sign Out</Link>
+                    <span>{session.user?.role}</span>
+                  </div>
+                ))
+              ) : (
                 <div className="flex gap-1">
                   <Link href="/api/auth/signin">Login</Link>
-                </div>
-              ) : (
-                <div>
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="fill-slate-50 h-8 w-8"
-                  >
-                    <title />
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M20,19v1a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V19a6,6,0,0,1,6-6h4A6,6,0,0,1,20,19Z" />
-                  </svg>
-                  <span>{session.user?.name}</span>
-                  <Link href="/api/auth/signout?callbackUrl=/">Sign Out</Link>
                 </div>
               )}
             </div>
@@ -97,8 +100,8 @@ async function Navbar({ session }: { session: Session | null }) {
           </div>
         </div>
         <MobileMenu />
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }
 

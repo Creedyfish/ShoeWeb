@@ -2,9 +2,9 @@
 interface Props {
   data: {
     product_id: number;
-    product_name: string;
-    product_tagline: string;
-    product_image: string;
+    name: string;
+    tagline: string;
+    image: string;
     bgcolor: string;
   }[];
 }
@@ -50,20 +50,12 @@ function Slider({ data }: Props) {
         }
       >
         {data
-          ? data.map(
-              (prod: {
-                product_id: number;
-                product_name: string;
-                product_tagline: string;
-                product_image: string;
-                bgcolor: string;
-              }) => (
-                <SwiperSlide key={prod.product_id} className=" ">
-                  <FeaturedProds data={prod} />
-                </SwiperSlide>
-              )
-            )
-          : ""}
+          ? data.map((prod) => (
+              <SwiperSlide key={prod.product_id}>
+                <FeaturedProds product={prod} />
+              </SwiperSlide>
+            ))
+          : null}
       </Swiper>
     </>
   );

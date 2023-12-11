@@ -1,12 +1,13 @@
-import { sql } from '@vercel/postgres';
-import { NextResponse } from 'next/server';
- 
-export async function GET(request: Request) {
+import prisma from '@/lib/prisma';
+import { NextResponse } from "next/server";
+
+export const GET = async (req: Request, res: NextResponse) => {
   try {
-    const result =
-      await sql`CREATE TABLE Pets ( Name varchar(255), Owner varchar(255) );`;
-    return NextResponse.json({ result }, { status: 200 });
+    const post = 'Hello World';
+   return NextResponse.json({ data: post });
+    
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json({ data: error });
   }
+  
 }
