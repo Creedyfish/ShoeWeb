@@ -3,7 +3,7 @@ import ProductCard from "./components/ProductCard";
 import { promises as fs } from "fs";
 import { useState } from "react";
 import HeroSelection from "./components/HeroSelection";
-import Slider from "./components/Slider";
+import Slider from "./components/FeaturedProdSlider";
 import { cookies } from "next/headers";
 import { getfeatProds } from "./queries/apiQueries";
 
@@ -11,7 +11,7 @@ export default async function Home() {
   // const data = await getfeatProds();
 
   return (
-    <main className="pt-20  container top-0 left-0 w-full h-full mx-auto bg-slate-700">
+    <main className="container top-0 left-0 w-full h-full mx-auto bg-slate-700">
       <div className="">
         <section className="hero-section w-full py-6 overflow-visible">
           {/* <Slider data={data} /> */}

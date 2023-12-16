@@ -6,6 +6,7 @@ import { Inter, Raleway } from "next/font/google";
 import Provider from "./components/Provider";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
+import { constrainedMemory } from "process";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(options);
+
   return (
     <html lang="en" className={`${raleway.variable} ${inter.variable} `}>
       <head>
@@ -54,10 +56,7 @@ export default async function RootLayout({
       </head>
 
       <body className={` bg-slate-800 ${raleway.className}`}>
-        <Provider session={session}>
-          {children}
-          <Footer />
-        </Provider>
+        <Provider session={session}>{children}</Provider>
       </body>
     </html>
   );

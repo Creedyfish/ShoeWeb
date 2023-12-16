@@ -1,35 +1,39 @@
-import { NextResponse } from "next/server"
+import { NextResponse, userAgent } from "next/server"
 import prisma from "@/lib/prisma"
+import bcrypt from "bcrypt"
 export const POST = async (req: Request, res: Response) => {
     try {
-        const params = await req.json()
+        const userData = await req.json()
+       
         
-        
-       const getUser = await prisma.user.findUnique({
+       const getUser = await prisma.user.findFirst({
         where: {
-            email: params.email,
+            email: userData.email,
             },
         }
        )
        if (getUser)
       return NextResponse.json({
-        status: 400,
+       
         message: "Username already exists.",
         field: "userName",
-      });
-// {
-    //     status: 400,
-    //     message: "Username already exists.",
-    //     field: "userName",
-    //   };
-        //  const user = await prisma.user.create({
-        //   data: {
-        //         email: params.email,
-        //         },
-        //   }
-        //  )
+      }, {status: 409});
 
-    return NextResponse.json(params)
+      const salt = await bcrypt.genSalt(Number(process.env.SALT_KEY));
+      const hashedPassword = await bcrypt.hash(userData.password,salt)
+      userData.password = hashedPassword
+      
+        const user = await prisma.user.create({
+            data: {
+                email: userData.email,
+                password: userData.password,
+                role: 'user'
+                },
+            }
+         )
+         
+
+    return NextResponse.json({data : user}, {status: 201})
     } catch (error) {
         return NextResponse.json(error)
             

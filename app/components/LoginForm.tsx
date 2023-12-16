@@ -1,15 +1,17 @@
 "use client";
 import React from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { signIn, getSession } from "next-auth/react";
 import Image from "next/image";
-function UserForm() {
-  const router = useRouter();
+import Link from "next/link";
+
+function LoginForm() {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    passwordConfirm: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,39 +19,28 @@ function UserForm() {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setErrorMessage("");
     setLoading(true);
     e.preventDefault();
-    if (formData.password !== formData.passwordConfirm) {
-      setErrorMessage("Passwords do not match");
-      setLoading(false);
-      return false;
-    }
-    const formDataToSubmit = {
-      email: formData.email.toLowerCase(),
+
+    const result = await signIn("credentials", {
+      email: formData.email,
       password: formData.password,
-    };
-
-    const res = await fetch("api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formDataToSubmit),
+      redirect: false,
     });
-    const result = await res.json();
 
-    if (!res.ok) {
-      console.log(result);
-      setErrorMessage(result.message);
-      setLoading(false);
+    if (result?.error) {
+      setErrorMessage("Wrong Password or Email");
     } else {
-      router.refresh();
-      router.push("/");
-      setLoading(false);
+      const session = await getSession();
+      if (session?.user?.role === "admin") {
+        router.push("/admin");
+      } else {
+        router.push("/");
+      }
     }
-  };
 
+    setLoading(false);
+  };
   return (
     <div className="flex justify-center font-sans">
       <div className="p-5 md:p-20 w-full bg-slate-500 rounded-lg">
@@ -64,7 +55,6 @@ function UserForm() {
         </div>
         <form
           onSubmit={handleSubmit}
-          method="post"
           className="flex flex-col font-medium text-base min-w-[15rem] w-[50vw]  md:w-96"
           autoComplete="off"
         >
@@ -90,30 +80,53 @@ function UserForm() {
             required={true}
             placeholder="Password"
           />
-          <div>CONFIRM PASSWORD</div>
-          <input
-            className="p-2 rounded-lg"
-            id="passwordConfirm"
-            name="passwordConfirm"
-            type="password"
-            onChange={handleChange}
-            value={formData.passwordConfirm}
-            required={true}
-            placeholder="Confirm Password"
-          />
+
           <div className="text-red-600 text-lg">{errorMessage}</div>
           <button
             className="bg-slate-800 mt-5 p-2 rounded-lg text-slate-50 hover:bg-slate-700 transition-all ease-in-out duration-300"
             type="submit"
             disabled={loading}
           >
-            Create New Account
+            Login
           </button>
-          {/* <input type="submit" value="Create User" /> */}
+          <div></div>
+          <Link
+            className="bg-slate-800 flex justify-center mt-3 p-2 rounded-lg text-slate-50 hover:bg-slate-700 transition-all ease-in-out duration-300"
+            href={"/signup"}
+          >
+            Create a New Account
+          </Link>
         </form>
       </div>
     </div>
+    //    <div>
+    //    <form onSubmit={handleSubmit}>
+    //      <input
+    //        className="outline-none"
+    //        id="email"
+    //        name="email"
+    //        type="email"
+    //        value={formData.email}
+    //        placeholder="Email"
+    //        onChange={handleChange}
+    //      />
+    //      <input
+    //        onChange={handleChange}
+    //        id="password"
+    //        name="password"
+    //        type="password"
+    //        value={formData.password}
+    //        placeholder="Password"
+    //        className="outline-none"
+    //      />
+    //      <button disabled={loading} type="submit">
+    //        Login
+    //      </button>
+    //    </form>
+    //    <div>{errorMessage}</div>
+
+    //  </div>
   );
 }
 
-export default UserForm;
+export default LoginForm;

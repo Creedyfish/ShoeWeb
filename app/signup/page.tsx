@@ -3,7 +3,7 @@ import UserForm from "../components/UserForm";
 
 export const page = () => {
   return (
-    <div>
+    <div className="container mx-auto h-screen flex justify-center items-center">
       <UserForm />
     </div>
   );

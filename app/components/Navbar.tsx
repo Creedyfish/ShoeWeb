@@ -8,12 +8,11 @@
  * // Example usage of the Navbar component
  * <Navbar />
  */
-"use client";
 import Image from "next/image";
-import React from "react";
 import Link from "next/link";
-import { useState } from "react";
-import { Session } from "next-auth";
+import { useState, useEffect } from "react";
+
+import { signIn, signOut, useSession } from "next-auth/react";
 
 /**
  * Functional component representing the main navigation bar.
@@ -21,7 +20,9 @@ import { Session } from "next-auth";
  * @returns {React.JSX.Element} The JSX for the Navbar.
  */
 
-function Navbar({ session }: { session: Session | null }) {
+function Navbar() {
+  const { data: session } = useSession();
+
   return (
     <nav className="fixed text-white w-full top-0 left-0 z-50 ">
       <div className="bg-slate-800 flex justify-center">
@@ -39,6 +40,11 @@ function Navbar({ session }: { session: Session | null }) {
 
           <div className="navmenu flex flex-1 justify-center">
             <ul className="flex gap-4">
+              {session?.user?.role === "admin" ? (
+                <li>
+                  <Link href="/admin">Admin</Link>
+                </li>
+              ) : null}
               <li>
                 <Link href="/">Featured</Link>
               </li>
@@ -65,9 +71,8 @@ function Navbar({ session }: { session: Session | null }) {
             </div>
             <div>
               {session ? (
-                (console.log(session),
-                (
-                  <div>
+                <div className="flex justify-center items-center gap-2">
+                  <div className="flex flex-col justify-center items-center">
                     <svg
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
@@ -77,14 +82,21 @@ function Navbar({ session }: { session: Session | null }) {
                       <circle cx="12" cy="8" r="4" />
                       <path d="M20,19v1a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V19a6,6,0,0,1,6-6h4A6,6,0,0,1,20,19Z" />
                     </svg>
-                    <span>{session.user?.name}</span>
-                    <Link href="/api/auth/signout?callbackUrl=/">Sign Out</Link>
                     <span>{session.user?.role}</span>
                   </div>
-                ))
+                  <button
+                    onClick={() =>
+                      signOut({
+                        callbackUrl: "/",
+                      })
+                    }
+                  >
+                    Sign Out
+                  </button>
+                </div>
               ) : (
                 <div className="flex gap-1">
-                  <Link href="/api/auth/signin">Login</Link>
+                  <button onClick={() => signIn()}>Login</button>
                 </div>
               )}
             </div>
