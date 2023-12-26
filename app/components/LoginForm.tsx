@@ -32,6 +32,7 @@ function LoginForm() {
       setErrorMessage("Wrong Password or Email");
     } else {
       const session = await getSession();
+      console.log(session?.user?.role);
       if (session?.user?.role === "admin") {
         router.push("/admin");
       } else {

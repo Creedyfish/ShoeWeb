@@ -1,11 +1,11 @@
 import ProductList from "@/app/components/ProductList";
-import { getProducts } from "@/app/queries/apiQueries";
-import { useEffect } from "react";
+import { getProducts } from "@/queries/apiQueries";
+import { Suspense, useEffect } from "react";
 
 async function page() {
   const product = await getProducts();
   // const product = null;
-  console.log(product);
+
   return (
     <div className="flex flex-wrap justify-center md:justify-normal gap-4">
       {product

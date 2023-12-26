@@ -1,5 +1,7 @@
-import { getProdById } from "@/app/queries/apiQueries";
+import { getProdById } from "@/queries/apiQueries";
 import React from "react";
+import EditProductForm from "@/app/components/EditProductForm";
+import ProductCard from "@/app/components/ProductCard";
 
 interface Props {
   params: {
@@ -9,8 +11,12 @@ interface Props {
 
 async function page({ params }: Props) {
   const product = await getProdById(params.id);
-  console.log(product);
-  return <div className="text-white">{product.name}</div>;
+  return (
+    <div className="text-white w-full flex flex-col gap-2">
+      <div className="flex w-full">
+        <EditProductForm product={product} />
+      </div>
+    </div>
+  );
 }
-
 export default page;

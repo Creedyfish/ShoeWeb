@@ -24,3 +24,17 @@ try {
     return NextResponse.json({ data: error }, { status: 400 });
 }
 }
+
+export async function DELETE(req: Request,{params}: {params: {id: string}}, res: NextResponse) {
+try {
+    const deleteProduct = await prisma.product.delete({
+        where: {
+            product_id: parseInt(params.id)
+        }
+    })
+    return NextResponse.json(deleteProduct);
+}
+catch (error) {
+    return NextResponse.json({ data: error }, { status: 400 });
+}
+}

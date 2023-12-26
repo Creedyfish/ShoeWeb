@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface Props {
   data: {
-    product_id: number;
+    id: number;
     name: string;
     desc: string;
     image: string;

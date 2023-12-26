@@ -31,3 +31,46 @@ export async function GET(req: Request, res: NextResponse) {
     return NextResponse.json(error);
   }
 }
+
+export async function POST(req: Request, res: NextResponse) {
+    try {
+      const { product_id, name, desc, price, image, bgcolor, Featured_Products} = await req.json();
+      
+      const newProduct = await prisma.product.upsert({
+        where: { product_id: product_id || -1 },
+        update: {
+          name : name,
+          description: desc,
+          price: price,
+          image: image,
+          bgcolor: bgcolor
+        },
+        create: {
+          name : name,
+          description: desc,
+          price: price,
+          image: image,
+          bgcolor: bgcolor
+        },
+      });
+      if (Featured_Products) {
+        await prisma.featured_Products.upsert({
+          where: { id: product_id || -1 },
+          update: {
+            tagline: Featured_Products.tagline,
+            feat_image: Featured_Products.feat_image,
+          },
+          create: {
+            tagline: Featured_Products.tagline,
+            feat_image: Featured_Products.feat_image,
+            Product: {
+              connect: { product_id: product_id }
+            }
+          },
+        });
+      }
+        return NextResponse.json(newProduct);
+  } catch (error) {
+    return NextResponse.json(error);
+  }
+}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { data } from "autoprefixer";
+import { deleteProduct } from "@/queries/apiQueries";
 
 interface Props {
   data: {
@@ -17,7 +18,7 @@ interface Props {
   };
 }
 
-function ProductList({ data }: Props) {
+async function ProductList({ data }: Props) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -54,9 +55,7 @@ function ProductList({ data }: Props) {
             <span className="text-xs text-slate-500">Price: </span> $
             {data.price}
           </div>
-          <div className="  text-slate-800">
-            <span className="text-xs text-slate-500">Desc: </span> {data.desc}
-          </div>
+
           <div className="flex pt-5 gap-4 text-slate-50  ">
             <button
               className="bg-slate-800 flex-1 "
@@ -68,12 +67,13 @@ function ProductList({ data }: Props) {
             </button>
             <button
               className="bg-slate-800  flex-1 "
-              onClick={() => {
+              onClick={async () => {
                 if (
                   window.confirm("Are you sure you want to delete this item?")
                 ) {
-                  // deleteProduct(data.product_id);
-                  console.log("delete");
+                  await deleteProduct(data.product_id);
+                  alert("Product deleted successfully");
+                  router.refresh();
                 }
               }}
             >

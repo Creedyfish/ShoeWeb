@@ -5,7 +5,7 @@ import { useState } from "react";
 import HeroSelection from "./components/HeroSelection";
 import Slider from "./components/FeaturedProdSlider";
 import { cookies } from "next/headers";
-import { getfeatProds } from "./queries/apiQueries";
+import { getfeatProds } from "@/queries/apiQueries";
 
 export default async function Home() {
   // const data = await getfeatProds();

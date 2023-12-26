@@ -3,18 +3,17 @@ import Image from "next/image";
 
 interface Props {
   product: {
+    Featured_Products: {
+      tagline: string;
+      feat_image: string;
+    };
     product_id: number;
     name: string;
-    tagline: string;
-    image: string;
     bgcolor: string;
   };
 }
 
 const FeaturedProds = (data: Props) => {
-  {
-    console.log(data);
-  }
   return (
     <div className="bg-slate-700 h-full select-none">
       <div className="relative flex-wrap md:flex">
@@ -31,7 +30,7 @@ const FeaturedProds = (data: Props) => {
             </h1>
           </div>
           <div className="product-tagline text-2xl text-slate-50 ">
-            {data.product.tagline}
+            {data.product.Featured_Products?.tagline}
           </div>
         </div>
         <div className="flex flex-1 h-full justify-center">
@@ -41,7 +40,7 @@ const FeaturedProds = (data: Props) => {
           >
             <Image
               className=" w-72 h-72 lg:h-[50vw] lg:w-[50vw] z-10 transition-all ease-in-out duration-300 md:translate-y-16 max-w-md max-h-[448px]"
-              src={`/${data.product.image}`}
+              src={`/${data.product.Featured_Products?.feat_image}`}
               width={0}
               height={0}
               alt="sdasd"
