@@ -1,10 +1,12 @@
 "use client";
 interface Props {
-  data: {
+  product: {
+    Featured_Products: {
+      tagline: string;
+      feat_image: string;
+    };
     product_id: number;
     name: string;
-    tagline: string;
-    image: string;
     bgcolor: string;
   }[];
 }
@@ -22,7 +24,7 @@ import "swiper/css/effect-fade";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import FeaturedProds from "./FeaturedProds";
 
-function Slider({ data }: Props) {
+function Slider({ product }: Props) {
   return (
     <>
       <Swiper
@@ -49,8 +51,8 @@ function Slider({ data }: Props) {
           } as React.CSSProperties
         }
       >
-        {data
-          ? data.map((prod) => (
+        {product
+          ? product.map((prod) => (
               <SwiperSlide key={prod.product_id}>
                 <FeaturedProds product={prod} />
               </SwiperSlide>

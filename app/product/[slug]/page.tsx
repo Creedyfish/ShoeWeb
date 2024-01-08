@@ -1,7 +1,11 @@
 import React from "react";
+import { getProdById } from "@/queries/apiQueries";
+import Image from "next/image";
+import ProductPreview from "@/app/components/ProductPreview";
 
-function page({ params }: { params: { slug: string } }) {
-  return <div>{params.slug}</div>;
+async function page({ params }: { params: { slug: string } }) {
+  const product = await getProdById(params.slug);
+  return <ProductPreview product={product} />;
 }
 
 export default page;

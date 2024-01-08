@@ -54,10 +54,22 @@ export const deleteProduct = async (id: number) => {
 }
 
 export const deleteFeaturedProduct = async (id: number) => {
-  console.log("delete Featured api querue",id);
   const res = await fetch(`${API_URL}/product/featured/${id}`, {
     method: "DELETE",
     cache: "no-cache",
+  });
+
+  return res.json();
+}
+
+export const addCart = async (user: any) => {
+  
+  const res = await fetch(`${API_URL}/cart`, {
+    method: "POST",
+    body: JSON.stringify(user),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   return res.json();
