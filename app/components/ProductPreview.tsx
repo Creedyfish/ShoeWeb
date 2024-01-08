@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import { addCart } from "@/queries/apiQueries";
 function ProductPreview({ product }: { product: any }) {
   const router = useRouter();
   const session = useSession();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [selected, setSelected] = useState(product.image);
   const [quantity, setQuantity] = useState(1);
   const [popUp, setPopUp] = useState(false);
@@ -17,25 +18,33 @@ function ProductPreview({ product }: { product: any }) {
   };
   const handleHover = (e: React.MouseEvent<HTMLInputElement>) => {};
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity((prev) => (prev = Number(e.target.value)));
+    const value = parseInt(e.target.value);
+    if (value > 0) {
+      setQuantity((prev) => (prev = Number(e.target.value)));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
     e.preventDefault();
     try {
       if (session.status === "authenticated") {
         addCart({ ...product, quantity, session: session?.data?.user });
+        setIsSubmitting(false);
       } else {
+        setIsSubmitting(false);
         setPopUp(true);
       }
     } catch (error) {}
   };
 
-  const addQauntity = () => {
+  const addQauntity = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setQuantity((prev) => prev + 1);
   };
-  const subtractQuantity = () => {
-    setQuantity((prev) => prev - 1);
+  const subtractQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
   };
 
   return (
@@ -155,17 +164,25 @@ function ProductPreview({ product }: { product: any }) {
             </form>
           </div>
         </div>
-        <div className="w-2/4  bg-white rounded-lg">
-          <div>{product.name}</div>
-          <div>{product.price}</div>
-          <div>{product.description}</div>
+        <div className="w-2/4  bg-white rounded-lg p-4 flex flex-col gap-4">
+          <div className="text-4xl font-bold">{product.name}</div>
+          <div className="text-lg font-bold">${product.price}</div>
+          <div className="text-lg">{product.description}</div>
+          <div className="text-xs">
+            Deals and Discounts are treated as the same reductions to products.
+          </div>
           <div>
-            <form className="flex flex-col" onSubmit={handleSubmit}>
-              <div className="flex gap-4">
-                <button className="bg-slate-400" onClick={subtractQuantity}>
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              Quantity
+              <div className="flex mx-auto justify-center items-center gap-4">
+                <button
+                  className="bg-slate-400 text-base font-bold px-2 rounded-sm"
+                  onClick={subtractQuantity}
+                >
                   -
                 </button>
                 <input
+                  className="w-10 p-2 bg-slate-400 rounded-md flex justify-center items-center text-center"
                   type="number"
                   id="quantity"
                   inputMode="numeric"
@@ -173,11 +190,18 @@ function ProductPreview({ product }: { product: any }) {
                   value={quantity}
                   onChange={handleChange}
                 />
-                <button className="bg-slate-400" onClick={addQauntity}>
+                <button
+                  className="bg-slate-400 text-base font-bold px-2 rounded-sm"
+                  onClick={addQauntity}
+                >
                   +
                 </button>
               </div>
-              <button className="bg-slate-400" type="submit">
+              <button
+                className={`bg-slate-400 p-4 rounded-lg`}
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Add to cart
               </button>
             </form>

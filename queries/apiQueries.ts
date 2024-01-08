@@ -23,7 +23,7 @@ export const getProdById = async (id:string) => {
 
   const res = await fetch(`${API_URL}/product/${id}`, {
     method: "GET",
-    cache: "no-cache",
+    cache: "default"
   });
 
   return res.json();
