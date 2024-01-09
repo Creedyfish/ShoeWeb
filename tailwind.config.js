@@ -16,6 +16,17 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        "success-animation": "success-animation 3s ease-in-out",
+      },
+      keyframes: {
+        "success-animation": {
+          "0%": { opacity: "0", transform: "scale(0.5)" },
+          "7.5%": { opacity: "1", transform: "scale(1)" },
+          "92.5%": { opacity: "1", transform: "scale(1)" },
+          "100%": { opacity: "0", transform: "scale(0.5)" },
+        },
+      },
     },
   },
   plugins: [],
