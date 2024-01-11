@@ -8,17 +8,17 @@ import { cookies } from "next/headers";
 import { getfeatProds } from "@/queries/apiQueries";
 
 export default async function Home() {
-  // const data = await getfeatProds();
+  const data = await getfeatProds();
 
   return (
     <main className="container top-0 left-0 w-full h-full mx-auto bg-slate-700">
       <div className="">
         <section className="hero-section w-full py-6 overflow-visible">
-          {/* <Slider data={data} /> */}
+          <Slider product={data} />
         </section>
         <section className="featured-prods ">
-          {/* <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
-            {data
+          <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
+            {/* {data
               ? data.product.map(
                   (prod: {
                     product_id: number;
@@ -27,10 +27,22 @@ export default async function Home() {
                     product_image: string;
                     product_price: number;
                     bgcolor: string;
-                  }) => <ProductCard key={prod.product_id} data={prod} />
+                  }) => (
+                    <ProductCard
+                      key={prod.product_id}
+                      data={{
+                        id: prod.product_id,
+                        name: prod.product_name,
+                        desc: prod.product_tagline,
+                        image: prod.product_image,
+                        price: prod.product_price,
+                        bgcolor: prod.bgcolor,
+                      }}
+                    />
+                  )
                 )
-              : ""}
-          </div> */}
+              : ""} */}
+          </div>
         </section>
 
         <section className="categories  p-10 text-slate-50 text-2xl font-medium">

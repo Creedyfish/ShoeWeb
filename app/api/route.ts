@@ -13,15 +13,23 @@ export async function GET(req: Request, res: NextResponse) {
           },
         },
       });
+      
       const featProds = featuredProducts.map((prod) => {
         return {
-          product_id: prod.Product.product_id,
-          name: prod.Product.name,
-          tagline: prod.tagline,
-          image: prod.feat_image,
-          bgcolor : prod.Product.bgcolor,
+          
+          
+      Featured_Products: {
+        tagline: prod.tagline,
+        feat_image: prod.feat_image,
+      },
+      product_id: prod.Product.product_id,
+      name: prod.Product.name,
+      bgcolor: prod.Product.bgcolor,
+    
+          
         };
       });
+      
     return NextResponse.json(featProds);
   } catch (error) {
     return NextResponse.json(error);
