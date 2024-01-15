@@ -1,26 +1,26 @@
 import Image from "next/image";
 import ProductCard from "./components/ProductCard";
-import { promises as fs } from "fs";
-import { useState } from "react";
-import HeroSelection from "./components/HeroSelection";
 import Slider from "./components/FeaturedProdSlider";
-import { cookies } from "next/headers";
 import { getfeatProds } from "@/queries/apiQueries";
 import Link from "next/link";
+import { getProducts } from "@/queries/apiQueries";
 
 export default async function Home() {
-  const data = await getfeatProds();
+  const [productData, featuredData] = await Promise.all([
+    getProducts(),
+    getfeatProds(),
+  ]);
 
   return (
     <main className="container top-0 left-0 w-full h-full mx-auto bg-slate-700">
       <div className="">
         <section className="hero-section w-full py-6 overflow-visible">
-          <Slider product={data} />
+          <Slider product={featuredData} />
         </section>
         <section className="featured-prods ">
           <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
-            {data
-              ? data.map((prod: any) => (
+            {productData
+              ? productData.map((prod: any) => (
                   <Link
                     key={prod.product_id}
                     href={`/product/${prod.product_id}`}

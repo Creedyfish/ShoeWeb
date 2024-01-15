@@ -4,13 +4,17 @@ import prisma from "@/lib/prisma";
 export async function DELETE(req:NextRequest,res:NextResponse){
  try {
   const body = await req.json()
+  // console.log(body)
+  // const deleteList = body.map((item)=>{
+  //   console.log(item)
+  // })
   const user = await prisma.user.findUnique({
     where: {
       id: body.userId
     }
   });
   if(!user){
-    throw new Error('User not found');
+    return NextResponse.json({ message: 'User not found' });
   } else{
     const deleteItem = await prisma.cart.delete({
       where: {

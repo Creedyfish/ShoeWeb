@@ -67,10 +67,7 @@ function EditProductForm(data: Props) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    // console.log({
-    //   ...formData,
-    //   Featured_Products: featuredData,
-    // });
+
     try {
       console.log(formData);
       if (!isChecked && data.product.Featured_Products) {

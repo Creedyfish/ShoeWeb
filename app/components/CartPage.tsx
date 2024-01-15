@@ -1,19 +1,33 @@
 "use client";
-import { getCart } from "@/queries/apiQueries";
+import { deleteCartItem, getCart } from "@/queries/apiQueries";
 import { use, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import CartList from "./CartList";
-useRouter;
+import { addOrder } from "@/queries/apiQueries";
+import Image from "next/image";
 
 function CartPage({ session }: any) {
   const router = useRouter();
+  const [Successs, setSuccess] = useState(false);
 
   const [formData, setFormData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   if (!session) {
     router.push("/signup");
   }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const addRes = await addOrder(formData);
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 4000);
+    } catch (error) {
+      console.log("ewrrrowe clinet");
+    }
+  };
+
   useEffect(() => {
     const fetchCart = async () => {
       if (session.user) {
@@ -21,7 +35,6 @@ function CartPage({ session }: any) {
           const data = await getCart(session.user.id);
           setFormData(data);
           setIsLoading(false);
-          console.log(formData);
         } catch (error) {
           console.log(error);
         }
@@ -34,8 +47,21 @@ function CartPage({ session }: any) {
     .reduce((total, prod) => total + prod.Product.price * prod.quantity, 0)
     .toFixed(2);
   const tax = 50.0;
+
   return (
     <div className="w-full container mx-auto p-2 ">
+      {Successs ? (
+        <div className="fixed w-full h-auto animate-success-animation opacity-0">
+          <div className="flex justify-center ">
+            <div className="bg-slate-900 text-slate-50 flex gap-4 justify-center items-center p-4 rounded-full border-solid border-4 border-slate-50">
+              <Image src={"/logo.svg"} alt="logo" height={75} width={75} />
+              <div className="text-lg font-bold">
+                <span className="font-2xl">Products Have been Ordered</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <div className="flex gap-4">
         <div className="w-4/6  ">
           <div className="flex flex-col gap-4 ">
@@ -91,12 +117,17 @@ function CartPage({ session }: any) {
                   <div className="">Total</div>
                   <div className="">$ {subtotal + tax}</div>
                 </div>
-                <button className="p-4 rounded-lg bg-slate-500">
-                  Checkout
-                </button>
-                <button className="p-4 rounded-lg bg-slate-500">
-                  Purchase
-                </button>
+                <form onSubmit={handleSubmit}>
+                  <button
+                    className="p-4 rounded-lg bg-slate-500 "
+                    type="submit"
+                  >
+                    Checkout
+                  </button>
+                  <button className="p-4 rounded-lg bg-slate-500">
+                    Purchase
+                  </button>
+                </form>
               </>
             ) : (
               <div>No Products in your cart</div>

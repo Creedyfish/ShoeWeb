@@ -97,3 +97,15 @@ export const getCart = async (id: string) => {
 
   return res.json();
 };
+
+export const addOrder = async (order:any) => {
+  
+  const res = await fetch(`${API_URL}/order`,{
+    method: "POST",
+    body: JSON.stringify(order),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    });
+  return res.json();
+}

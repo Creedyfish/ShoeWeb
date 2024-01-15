@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { useState } from "react";
 import { deleteCartItem } from "@/queries/apiQueries";
+import { format } from "path";
 
 function CartList({ prod, setFormData, setIsLoading }: any) {
   const [quantity, setQuantity] = useState(prod.quantity);
@@ -34,9 +35,11 @@ function CartList({ prod, setFormData, setIsLoading }: any) {
     updateQuantity(prod.product_id, quantity - 1);
   };
   const handleDeleteCartItem = () => {
-    alert("do you wish to delete Item");
-    setIsLoading(true);
-    deleteCartItem(prod.user_id, prod.product_id);
+    // alert("do you wish to delete Item");
+    // deleteCartItem(prod.user_id, prod.product_id);
+    // setFormData((prevFormData: { product_id: number }[]) =>
+    //   prevFormData.filter((item) => item.product_id !== prod.product_id)
+    // );
   };
 
   return (

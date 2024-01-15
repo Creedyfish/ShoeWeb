@@ -15,7 +15,7 @@ interface Props {
 
 const FeaturedProds = (data: Props) => {
   return (
-    <div className="bg-slate-700 h-full select-none">
+    <div className="bg-slate-700 h-full select-none font-raleway">
       <div className="relative flex-wrap md:flex">
         <div
           className="featured-item flex flex-1 flex-col items-center justify-center drag-none "

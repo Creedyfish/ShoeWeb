@@ -58,11 +58,11 @@ model Cart {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Orders {
-  id         BigInt   @id @default(autoincrement())
   user_id    String?  @db.Uuid
   product_id Int?
   quantity   Int?
   order_time DateTime @default(now()) @db.Timestamptz(6)
+  order_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   Product    Product? @relation(fields: [product_id], references: [product_id], onDelete: NoAction, onUpdate: NoAction)
   User       User?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
