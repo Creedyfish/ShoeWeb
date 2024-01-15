@@ -115,9 +115,9 @@ function CartPage({ session }: any) {
                 </div>
                 <div className="flex justify-between">
                   <div className="">Total</div>
-                  <div className="">$ {subtotal + tax}</div>
+                  <div className="">${Number(subtotal + tax).toFixed(2)}</div>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                   <button
                     className="p-4 rounded-lg bg-slate-500 "
                     type="submit"
