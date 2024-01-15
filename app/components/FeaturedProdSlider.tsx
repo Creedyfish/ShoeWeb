@@ -11,10 +11,9 @@ interface Props {
   }[];
 }
 
-import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import Link from "next/link";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -54,7 +53,9 @@ function Slider({ product }: Props) {
         {product
           ? product.map((prod) => (
               <SwiperSlide key={prod.product_id}>
-                <FeaturedProds product={prod} />
+                <Link href={`/product/${prod.product_id}`}>
+                  <FeaturedProds product={prod} />
+                </Link>
               </SwiperSlide>
             ))
           : null}

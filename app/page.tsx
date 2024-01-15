@@ -6,6 +6,7 @@ import HeroSelection from "./components/HeroSelection";
 import Slider from "./components/FeaturedProdSlider";
 import { cookies } from "next/headers";
 import { getfeatProds } from "@/queries/apiQueries";
+import Link from "next/link";
 
 export default async function Home() {
   const data = await getfeatProds();
@@ -18,30 +19,25 @@ export default async function Home() {
         </section>
         <section className="featured-prods ">
           <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
-            {/* {data
-              ? data.product.map(
-                  (prod: {
-                    product_id: number;
-                    product_name: string;
-                    product_tagline: string;
-                    product_image: string;
-                    product_price: number;
-                    bgcolor: string;
-                  }) => (
+            {data
+              ? data.map((prod: any) => (
+                  <Link
+                    key={prod.product_id}
+                    href={`/product/${prod.product_id}`}
+                  >
                     <ProductCard
-                      key={prod.product_id}
                       data={{
-                        id: prod.product_id,
-                        name: prod.product_name,
-                        desc: prod.product_tagline,
-                        image: prod.product_image,
-                        price: prod.product_price,
+                        id: prod.id,
+                        name: prod.name,
+                        desc: prod.tagline,
+                        image: prod.image,
+                        price: prod.price,
                         bgcolor: prod.bgcolor,
                       }}
                     />
-                  )
-                )
-              : ""} */}
+                  </Link>
+                ))
+              : ""}
           </div>
         </section>
 

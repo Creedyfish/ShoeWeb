@@ -35,7 +35,7 @@ export async function GET(req: Request, res: NextResponse) {
 export async function POST(req: Request, res: NextResponse) {
     try {
       const { product_id, name, desc, price, image, bgcolor, Featured_Products} = await req.json();
-      
+      console.log(product_id)
       const newProduct = await prisma.product.upsert({
         where: { product_id: product_id || -1 },
         update: {
@@ -53,6 +53,10 @@ export async function POST(req: Request, res: NextResponse) {
           bgcolor: bgcolor
         },
       });
+      if (typeof Featured_Products === 'undefined') {
+        // Featured_Products is undefined
+        // Handle the case here
+      }
       if (Featured_Products) {
         await prisma.featured_Products.upsert({
           where: { id: product_id || -1 },

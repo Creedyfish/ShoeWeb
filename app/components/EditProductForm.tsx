@@ -72,13 +72,20 @@ function EditProductForm(data: Props) {
     //   Featured_Products: featuredData,
     // });
     try {
+      console.log(formData);
       if (!isChecked && data.product.Featured_Products) {
         await upsertProduct({ formData });
         await deleteFeaturedProduct(formData.product_id);
+
         alert("Product has been edited and removed from featured");
         setLoading(false);
       } else if (isChecked && featuredData) {
         await upsertProduct({ ...formData, Featured_Products: featuredData });
+        alert("Product has been edited");
+
+        setLoading(false);
+      } else {
+        await upsertProduct(formData);
         alert("Product has been edited");
         setLoading(false);
       }
@@ -195,23 +202,34 @@ function EditProductForm(data: Props) {
       </div>
       <ToggleSwitch isChecked={isChecked} setIsChecked={setIsChecked} />
       {isChecked ? (
-        <div>
-          <input
-            id="tagline"
-            name="tagline"
-            type="text"
-            value={featuredData?.tagline ?? ""}
-            onChange={handleFeaturedChange}
-            className="text-black"
-          />
-          <input
-            id="feat_image"
-            name="feat_image"
-            type="text"
-            value={featuredData?.feat_image ?? ""}
-            onChange={handleFeaturedChange}
-            className="text-black"
-          />
+        <div className="">
+          <div className="flex flex-col ">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col font-medium text-base min-w-[15rem] w-[50vw]  md:w-96"
+              autoComplete="off"
+            >
+              <div>Tagline for the Product</div>
+              <input
+                id="tagline"
+                name="tagline"
+                type="text"
+                value={featuredData?.tagline ?? ""}
+                onChange={handleFeaturedChange}
+                className="text-black p-2 rounded-lg"
+              />
+
+              <div>Image Link or File</div>
+              <input
+                id="feat_image"
+                name="feat_image"
+                type="text"
+                value={featuredData?.feat_image ?? ""}
+                onChange={handleFeaturedChange}
+                className="text-black p-2 rounded-lg"
+              />
+            </form>
+          </div>
 
           <FeaturedProds
             product={{
@@ -221,7 +239,7 @@ function EditProductForm(data: Props) {
           />
         </div>
       ) : (
-        <div>Add to Featured</div>
+        <div></div>
       )}
     </div>
     //    <div>

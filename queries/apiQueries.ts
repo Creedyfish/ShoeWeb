@@ -23,7 +23,7 @@ export const getProdById = async (id:string) => {
 
   const res = await fetch(`${API_URL}/product/${id}`, {
     method: "GET",
-    cache: "default"
+    cache: "no-cache"
   });
 
   return res.json();
@@ -74,3 +74,26 @@ export const addCart = async (user: any) => {
 
   return res.json();
 }
+
+export const deleteCartItem = async (userId: string, productId: number) => {
+  const res = await fetch(`${API_URL}/cart`, {
+    method: "DELETE",
+    body: JSON.stringify({ userId, productId }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    
+  });
+
+  return res.json();
+};
+
+export const getCart = async (id: string) => {
+  
+  const res = await fetch(`${API_URL}/cart/${id}`, {
+    method: "GET",
+    cache: "no-cache",
+  });
+
+  return res.json();
+};

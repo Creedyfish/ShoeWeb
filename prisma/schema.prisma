@@ -31,6 +31,7 @@ model Product {
   bgcolor           String?            @db.VarChar
   Cart              Cart[]
   Featured_Products Featured_Products?
+  Orders            Orders[]
   images            images?
 }
 
@@ -46,23 +47,23 @@ model Featured_Products {
 model Cart {
   cart_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   product_id Int
-  quantity   BigInt?
+  quantity   Int?
   created_at DateTime @default(now()) @db.Timestamptz(6)
   user_id    String   @db.Uuid
   Product    Product  @relation(fields: [product_id], references: [product_id], onDelete: Cascade)
   User       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  Orders     Orders[]
 
   @@unique([product_id, user_id])
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Orders {
-  order_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  cart_id    String?  @db.Uuid
-  created_at DateTime @default(now()) @db.Timestamptz(6)
+  id         BigInt   @id @default(autoincrement())
   user_id    String?  @db.Uuid
-  Cart       Cart?    @relation(fields: [cart_id], references: [cart_id], onDelete: NoAction, onUpdate: NoAction)
+  product_id Int?
+  quantity   Int?
+  order_time DateTime @default(now()) @db.Timestamptz(6)
+  Product    Product? @relation(fields: [product_id], references: [product_id], onDelete: NoAction, onUpdate: NoAction)
   User       User?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 

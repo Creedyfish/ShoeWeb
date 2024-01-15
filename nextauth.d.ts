@@ -3,6 +3,7 @@ import { User as NextAuthUser } from 'next-auth'
 
 
 interface UserSession {
+  id:string,
   role: string;
   name: string;
   email: string;

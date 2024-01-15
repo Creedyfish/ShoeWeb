@@ -17,7 +17,7 @@ function ProductCard({ data }: Props) {
   return (
     <button className="group relative no-drag">
       <div
-        className="flex flex-col p-6  relative rounded-xl overflow-clip "
+        className="flex flex-col p-6  relative rounded-xl overflow-clip"
         style={{ backgroundColor: data.bgcolor }}
       >
         <div className="relative  py-10 flex overflow-clip justify-center no-drag">
