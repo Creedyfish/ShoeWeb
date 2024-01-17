@@ -16,7 +16,7 @@ async function page() {
                 Refine Your Game
               </div>
               <div className="text-3xl flex font-medium">
-                <div className="bg-slate-400 px-2">Men's Shoes</div>
+                <div className="bg-slate-400 px-2">Men`&apos;`s Shoes</div>
               </div>
             </div>
           </div>

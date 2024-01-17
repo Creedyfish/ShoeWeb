@@ -16,7 +16,7 @@ async function page() {
                 Run with Style
               </div>
               <div className="text-3xl flex font-medium">
-                <div className="bg-slate-400 px-2">Women's Shoes</div>
+                <div className="bg-slate-400 px-2">Women`&apos;`s Shoes</div>
               </div>
             </div>
           </div>
