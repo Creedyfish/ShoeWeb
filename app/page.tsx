@@ -4,21 +4,21 @@ import Slider from "./components/FeaturedProdSlider";
 import { getfeatProds } from "@/queries/apiQueries";
 import Link from "next/link";
 import { getProducts } from "@/queries/apiQueries";
-// {Disclaimer:All assets, including images, featured on this platform are intended solely for mock-up purposes and are not authorized for commercial or business use. The content presented here is created and provided for portfolio-building purposes only. Any resemblance to real products, brands, or copyrighted materials is coincidental. Users are advised to exercise discretion and respect intellectual property rights when using these assets for non-commercial, personal, or portfolio purposes. The platform and its contributors do not endorse or encourage any unauthorized business use of the showcased content.}
+
 export default async function Home() {
-  const [productData, featuredData] = await Promise.all([
-    getProducts(),
-    getfeatProds(),
-  ]);
+  // const [productData, featuredData] = await Promise.all([
+  //   getProducts(),
+  //   getfeatProds(),
+  // ]);
   return (
     <main className="container top-0 left-0 w-full h-full mx-auto bg-slate-700">
       <div className="">
         <section className="hero-section w-full py-6 overflow-visible">
-          <Slider product={featuredData} />
+          {/* <Slider product={featuredData} /> */}
         </section>
         <section className="featured-prods ">
           <div className="flex flex-wrap lg:flex-nowrap p-10 gap-4 justify-center no-drag">
-            {productData
+            {/* {productData
               ? productData.map((prod: any) => (
                   <Link
                     key={prod.product_id}
@@ -37,7 +37,7 @@ export default async function Home() {
                     />
                   </Link>
                 ))
-              : ""}
+              : ""} */}
           </div>
         </section>
 
