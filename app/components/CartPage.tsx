@@ -42,7 +42,7 @@ function CartPage({ session }: any) {
     };
 
     fetchCart();
-  }, [session.user.id, isLoading]);
+  }, [session.user, isLoading]);
   const subtotal = formData
     .reduce((total, prod) => total + prod.Product.price * prod.quantity, 0)
     .toFixed(2);
