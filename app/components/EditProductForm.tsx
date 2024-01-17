@@ -193,6 +193,7 @@ function EditProductForm(data: Props) {
               ...formData,
               id: Number(formData.product_id),
               price: Number(formData.price),
+              category: null,
             }}
           />
         </div>
