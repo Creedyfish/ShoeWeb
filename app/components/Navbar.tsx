@@ -72,17 +72,17 @@ function Navbar() {
             <div>
               {session ? (
                 <div className="flex justify-center items-center gap-2">
-                  <div className="flex flex-col justify-center items-center">
+                  <div className="flex gap-2 justify-center items-center">
                     <svg
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="fill-slate-50 h-8 w-8"
+                      className="h-8 w-8 fill-brandColor"
                     >
                       <title />
                       <circle cx="12" cy="8" r="4" />
                       <path d="M20,19v1a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V19a6,6,0,0,1,6-6h4A6,6,0,0,1,20,19Z" />
                     </svg>
-                    <span>{session.user?.role}</span>
+                    <span>{session.user?.email.split("@")[0]}</span>
                   </div>
                   <button
                     onClick={() =>
@@ -117,7 +117,7 @@ function Navbar() {
             </div>
           </div>
         </div>
-        <MobileMenu />
+        <MobileMenu session={session} />
       </div>
     </nav>
   );
@@ -133,28 +133,98 @@ function Navbar() {
  * // Example usage of the MobileMenu component
  * <MobileMenu />
  */
-const MobileMenu = () => {
+const MobileMenu = ({ session }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="md:hidden ">
+    <div className="md:hidden w-full">
       <div
-        className={`absolute top-0 -z-10 bg-slate-800 w-full transition-all ease-in-out duration-300 ${
-          isOpen ? "translate-y-14 " : "-translate-y-full "
+        className={`absolute top-0 left-0 -z-10 bg-slate-800 w-full transition-all ease-in-out duration-300 ${
+          isOpen ? "translate-y-16 " : "-translate-y-full "
         }`}
       >
         <ul className="flex flex-col items-center">
-          <li className="p-2">Featured</li>
-          <li className="p-2">Men</li>
-          <li className="p-2">Women</li>
-          <li className="p-2">Kids</li>
+          {session?.user?.role === "admin" ? (
+            <li className="p-2">
+              <Link href="/admin">Admin</Link>
+            </li>
+          ) : null}
+          <li className="p-2">
+            <Link href="/">Featured</Link>
+          </li>
+          <li className="p-2">
+            <Link href="/men">Men</Link>
+          </li>
+          <li className="p-2">
+            <Link href="/women">Women</Link>
+          </li>
+          <li className="p-2">
+            <Link href="/kids">Kids</Link>
+          </li>
+
+          {session?.user ? (
+            <li className="p-2">
+              <button
+                onClick={() =>
+                  signOut({
+                    callbackUrl: "/",
+                  })
+                }
+              >
+                Sign Out
+              </button>
+            </li>
+          ) : null}
         </ul>
       </div>
-      <div className="container mx-auto flex justify-between min-[425px]:justify-around px-2 py-4 w-full ">
-        <div className="logo">logo</div>
-
-        <button className="btn bg-red-700" onClick={() => setIsOpen(!isOpen)}>
-          Login
+      <div className="container mx-auto flex justify-between items-center px-2 py-4 w-full ">
+        <div className="logo">
+          <Image
+            className="w-10 h-10"
+            src={"/logo.svg"}
+            alt=""
+            width={0}
+            height={0}
+            priority={true}
+          />
+        </div>
+        <div>
+          {session ? (
+            <div className="flex justify-center items-center gap-2">
+              <div className="flex gap-2 justify-center items-center">
+                <svg
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8 fill-brandColor"
+                >
+                  <title />
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M20,19v1a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V19a6,6,0,0,1,6-6h4A6,6,0,0,1,20,19Z" />
+                </svg>
+                <span>{session.user?.email.split("@")[0]}</span>
+              </div>
+            </div>
+          ) : (
+            <div className="flex gap-1">
+              <button onClick={() => signIn()}>Login</button>
+            </div>
+          )}
+        </div>
+        <button className="btn " onClick={() => setIsOpen(!isOpen)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={3}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
         </button>
       </div>
     </div>

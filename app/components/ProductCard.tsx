@@ -10,12 +10,13 @@ interface Props {
     image: string;
     price: number;
     bgcolor: string;
+    category: string | null;
   };
 }
 
 function ProductCard({ data }: Props) {
   return (
-    <button className="group relative no-drag">
+    <button className="group relative no-drag w-full">
       <div
         className="flex flex-col p-6  relative rounded-xl overflow-clip"
         style={{ backgroundColor: data.bgcolor }}
@@ -39,7 +40,7 @@ function ProductCard({ data }: Props) {
             {data.name}
           </div>
           <div className="font-normal text-base text-slate-50">
-            Men & Women Running Shoes
+            {data.category || " Men & Women Running Shoes"}
           </div>
         </div>
         <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-br from-slate-600 to-black opacity-[0.15] group-hover:opacity-0 transition-all ease-in-out duration-300"></div>

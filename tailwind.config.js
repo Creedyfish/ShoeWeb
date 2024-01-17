@@ -27,6 +27,9 @@ module.exports = {
           "100%": { opacity: "0", transform: "scale(0.5)" },
         },
       },
+      colors: {
+        brandColor: "#E7043C", // Add your color here
+      },
     },
   },
   plugins: [],
