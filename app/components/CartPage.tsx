@@ -92,7 +92,7 @@ function CartPage({ session }: any) {
               {formData &&
                 formData.map((prod: any) => {
                   return (
-                    <div className="flex justify-between">
+                    <div className="flex justify-between" key={prod.product_id}>
                       <div>{prod.Product.name}</div>
                       <div>$ {prod.quantity * prod.Product.price}</div>
                     </div>
