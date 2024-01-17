@@ -10,7 +10,6 @@ export default async function Home() {
     getProducts(),
     getfeatProds(),
   ]);
-
   return (
     <main className="container top-0 left-0 w-full h-full mx-auto bg-slate-700">
       <div className="">
@@ -44,7 +43,10 @@ export default async function Home() {
 
         <section className="categories  p-10 text-slate-50 text-2xl font-medium">
           <div className="flex flex-wrap justify-center gap-4 md:justify-evenly lg::gap-px md:flex-nowrap no-drag">
-            <button className="relative group flex rounded-xl justify-center overflow-hidden ">
+            <Link
+              href={"/men"}
+              className="relative group flex rounded-xl justify-center overflow-hidden "
+            >
               <Image
                 className="group-hover:scale-110 transition-all ease-in-out duration-300"
                 src="/men.webp"
@@ -58,8 +60,11 @@ export default async function Home() {
                   MEN&apos;S
                 </p>
               </div>
-            </button>
-            <button className="relative group flex rounded-xl justify-center overflow-hidden">
+            </Link>
+            <Link
+              href={"/women"}
+              className="relative group flex rounded-xl justify-center overflow-hidden"
+            >
               <Image
                 className="group-hover:scale-110 transition-all ease-in-out duration-300"
                 src="/women.webp"
@@ -74,8 +79,11 @@ export default async function Home() {
                   WOMEN&apos;S
                 </p>
               </div>
-            </button>
-            <button className="relative group flex rounded-xl justify-center overflow-hidden">
+            </Link>
+            <Link
+              href={"/kids"}
+              className="relative group flex rounded-xl justify-center overflow-hidden"
+            >
               <Image
                 className="group-hover:scale-110 transition-all ease-in-out duration-300"
                 src="/kids.webp"
@@ -89,7 +97,7 @@ export default async function Home() {
                   KID&apos;S
                 </p>
               </div>
-            </button>
+            </Link>
           </div>
         </section>
       </div>

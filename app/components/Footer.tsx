@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -8,18 +9,60 @@ function Footer() {
           <div className="flex flex-wrap gap-4 flex-1 w-full justify-center md:justify-around md:gap-0 ">
             <div className="flex-1">
               <div className="font-bold py-2">PRODUCTS</div>
-              <ul>
-                <li>Featured</li>
-                <li>Men</li>
-                <li>Women</li>
-                <li>Kids</li>
+              <ul className="">
+                <li>
+                  <Link
+                    className="hover:text-slate-400 transition-colors duration-200 ease-in-out"
+                    href={"/"}
+                  >
+                    Featured
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-slate-400 transition-colors duration-200 ease-in-out"
+                    href={"/men"}
+                  >
+                    Men
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-slate-400 transition-colors duration-200 ease-in-out"
+                    href={"/women"}
+                  >
+                    Women
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-slate-400 transition-colors duration-200 ease-in-out"
+                    href={"/kids"}
+                  >
+                    Kids
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="flex-1">
               <div className="font-bold py-2">ACCOUNT</div>
               <ul>
-                <li>Login</li>
-                <li>SignUp</li>
+                <li>
+                  <Link
+                    className="hover:text-slate-400 transition-colors duration-200 ease-in-out"
+                    href={"/login"}
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="hover:text-slate-400 transition-colors duration-200 ease-in-out"
+                    href={"/signup"}
+                  >
+                    SignUp
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="flex-1">
