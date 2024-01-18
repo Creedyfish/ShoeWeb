@@ -1,34 +1,118 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SHOEFITZ - Shoe Store Web App
 
-## Getting Started
+Welcome to our Shoe Store Web App! This application is built with Next.js, a React framework that ensures seamless performance and a delightful user experience. We've utilized Tailwind CSS for efficient styling, giving our app a sleek and modern look.
 
-First, run the development server:
+## Tech Stack
+
+**Client:**
+
+- Next.js
+
+- Tailwind CSS
+
+- Next/Auth (for authentication)
+
+- React
+
+- HTML
+
+- CSS
+
+- JavaScript
+
+**Server:**
+
+- Node.js(server-side logic)
+
+- PostgreSQL (as the database server)
+
+**Database Hosting:**
+
+- Supabase (PostgreSQL)
+
+## Features
+
+- Full CRUD Operations on Product Items and Cart Items
+- User Authentication and Authorization
+- Responsive Web App
+- Product Management
+- Cart Management
+- Admin Dashboard
+
+## Demo
+
+https://shoe-web-psi.vercel.app/
+
+# Installation
+
+To run the Shoe Store Web App locally, follow these steps:
+
+### 1. Node.js
+
+- Install Node.js from [https://nodejs.org/](https://nodejs.org/)
+
+### 2. Clone the Project
+
+```bash
+git clone https://github.com/Creedyfish/ShoeWeb.git
+
+cd ShoeWeb
+
+npm install
+
+```
+
+### 3. Set Up Supabase Database
+
+- Create an account on Supabase.
+- Create a new project in Supabase.
+- Find your project API URL and public key in the project settings.
+- Configure the Supabase connection in your Next.js app.
+
+Run the Project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Reference
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Get all Featured Products
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```http
+  GET /api/
+```
 
-## Learn More
+#### Get Products
 
-To learn more about Next.js, take a look at the following resources:
+```http
+  GET /api/product/${id}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Get a product by ID
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```http
+  GET /api/product/id
+```
 
-## Deploy on Vercel
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. Id of item to fetch |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Insert or Create Info on Product Details
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```http
+  POST /api/product/
+```
+
+| Body of Request     | Type     | Description                  |
+| :------------------ | :------- | :--------------------------- |
+| `product_id`        | `number` | Id of item                   |
+| `name`              | `string` | Name of item                 |
+| `desc`              | `string` | Description of item          |
+| `price`             | `number` | Price of item                |
+| `image`             | `string` | Local Image url of item      |
+| `bgcolor`           | `string` | color of item in Hex of item |
+| `Featured_Products` | `object` | object of item               |
+
+More info on App/queries/apiQueries.ts

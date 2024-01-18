@@ -25,6 +25,7 @@ function Navbar() {
 
   return (
     <>
+      <Disclaimer />
       <nav className="fixed text-white w-full top-0 left-0 z-50 ">
         <div className="bg-slate-800 flex justify-center">
           <div className="container m x-auto hidden md:flex items-center px-2 py-4 ">
@@ -121,7 +122,6 @@ function Navbar() {
           <MobileMenu session={session} />
         </div>
       </nav>
-      <Disclaimer />
     </>
   );
 }

@@ -1,6 +1,14 @@
-import Image from "next/image";
+/**
+ * Imports the `React` library.
+ */
 import React from "react";
 
+/**
+ * Defines the `loading` function.
+ * This function returns a JSX element that displays a loading spinner and a "Processing..." message.
+ *
+ * @returns {JSX.Element} The loading component.
+ */
 function loading() {
   return (
     <div className="container mx-auto flex justify-center ">
@@ -27,4 +35,7 @@ function loading() {
   );
 }
 
+/**
+ * Exports the `loading` function as a default export.
+ */
 export default loading;

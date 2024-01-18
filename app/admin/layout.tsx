@@ -1,7 +1,18 @@
+/**
+ * Imports the `Dashboard` component from "../components/Dashboard".
+ * This component is used to display the dashboard.
+ */
 import Dashboard from "../components/Dashboard";
-import { Session, getServerSession } from "next-auth";
-import { options } from "../api/auth/[...nextauth]/options";
 
+/**
+ * Defines the `DashboardLayout` function.
+ * This function is a layout component that wraps its children with a dashboard layout.
+ *
+ * @param {object} props - The props of the function.
+ * @param {React.ReactNode} props.children - The children to be wrapped with the dashboard layout.
+ *
+ * @returns {JSX.Element} The dashboard layout component.
+ */
 export default async function DashboardLayout({
   children,
 }: {

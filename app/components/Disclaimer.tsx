@@ -5,7 +5,7 @@ import Image from "next/image";
 function Disclaimer() {
   const [isOpen, setIsOpen] = useState(true);
   return (
-    <>
+    <div className="absolute z-50  ">
       {!isOpen ? null : (
         <div className="fixed z-50 flex w-full h-full justify-center items-center select-none bg-slate-950 bg-opacity-50">
           <div className="mx-auto container">
@@ -39,7 +39,7 @@ function Disclaimer() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

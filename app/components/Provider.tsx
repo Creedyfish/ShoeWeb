@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { Session } from "next-auth";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+
 interface Props {
   children: ReactNode;
   session: Session | null;
